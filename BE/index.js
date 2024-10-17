@@ -31,10 +31,15 @@ app.get("/countries/:countryCode", async (req, res) => {
         );
         const populationData = populationResponse.data.data.populationCounts;
 
+        const flagResponse = await axios.post("https://countriesnow.space/api/v0.1/countries/flag/images", {
+            iso2: countryCode
+        });
+        const flagUrl = flagResponse.data.data.flag;
 
         const countryData = {
             borderCountries,
-            populationData
+            populationData,
+            flagUrl
         };
 
         res.json(countryData);
