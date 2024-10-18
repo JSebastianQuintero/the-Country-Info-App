@@ -1,8 +1,11 @@
 require('dotenv').config();
 const express = require("express");
 const axios = require("axios");
+var cors = require('cors')
 const app = express();
 const port = 8000;
+
+app.use(cors())
 
 const nagerDateUrl = process.env.NAGER_DATE_URL;
 const postmanUrl = process.env.POSTMAN_URL;
