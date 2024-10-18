@@ -29,6 +29,9 @@ export default function CountryPage() {
 
     return (
         <div>
+            {!countryData && (
+                <div className="text-center p-4">Loading...</div>
+            )}
             {countryData && (
                 <div>
                     <div className="p-4 flex">

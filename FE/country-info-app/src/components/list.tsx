@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 
 export function CountryListComponent() {
-    const [countries, setCountries] = useState<Country[]>([]);
+    const [countries, setCountries] = useState<Country[] | null>(null);
     const [error, setError] = useState<string | null>(null);
 
     const fetchCountries = async () => {
@@ -25,7 +25,8 @@ export function CountryListComponent() {
 
     return (
         <div className="w-full flex flex-col divide-y-2 overflow-hidden">
-            {countries.map((country: Country, index) => (
+            {!countries && <div className="text-center p-4">Loading...</div>}
+            {countries && countries.map((country: Country, index) => (
                 <Link
                     key={`country${index}`}
                     className="p-3 capitalize hover:bg-black/10"
@@ -34,7 +35,6 @@ export function CountryListComponent() {
                 </Link>
             ))}
             {error && <div className="text-red-500 w-full p-4 text-center">{error}</div>}
-            {countries.length === 0 && !error && <div className='w-full p-4 text-center'>Loading...</div>}
         </div>
     );
 }
