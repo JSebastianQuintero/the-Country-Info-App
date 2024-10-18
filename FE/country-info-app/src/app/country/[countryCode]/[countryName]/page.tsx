@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import { BorderCountryListComponent } from '@/components/list';
+import { PopulationChart } from "@components/graph"
+import Link from 'next/link';
 
 export default function CountryPage() {
     const { countryCode, countryName } = useParams();
@@ -31,16 +33,26 @@ export default function CountryPage() {
                 <div>
                     <div className="p-4 flex">
                         <h1 className='text-4xl font-bold uppercase text-center w-full'>
-                        {countryName}
+                            {countryName}
                         </h1>
-                        <Image className='' src={countryData.flagUrl} alt={`${countryCode} flag`} width={70} height={70}/>
+                        <Image className='' src={countryData.flagUrl} alt={`${countryCode} flag`} width={70} height={70} />
                     </div>
                     <div className='grid grid-cols-12'>
-                    <ul className="p-2 col-span-12 lg:col-span-4">
-                        <div className="border">
-                        <BorderCountryListComponent countries={countryData.borderCountries}/>
+                        <ul className="col-span-12 lg:col-span-4 p-1">
+                            <div className="border">
+                                <h2 className='text-lg font-bold p-3 text-center border-b'>Border Countries</h2>
+                                <BorderCountryListComponent countries={countryData.borderCountries} />
+                            </div>
+                                <span className='text-center block text-black/40 dark:text-white/40'>You can click on other countries</span>
+                        </ul>
+                        <div className='col-span-12 lg:col-span-8 p-1'>
+                            <div className='border p-2'>
+                                <PopulationChart populationData={countryData.populationData} />
+                            </div>
                         </div>
-                    </ul>
+                    </div>
+                    <div className='w-full pt-4 flex justify-center'>
+                        <Link className='p-3 border rounded hover:bg-black/10 dark:hover:bg-white/10' href={"/"}>Country list</Link>
                     </div>
                 </div>
             )}
