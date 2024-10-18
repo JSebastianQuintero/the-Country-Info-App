@@ -35,6 +35,8 @@ export default function CountryPage() {
                         <h1 className='text-4xl font-bold uppercase text-center w-full'>
                             {countryData.commonName}
                         </h1>
+                        {countryData.flagUrl === "Error fetching flag" && 
+                        <div className='text-black/40 dark:text-white/40'>flag not found</div>}
                         {countryData.flagUrl !== "Error fetching flag" &&
                             <Image className='' src={countryData.flagUrl} alt={`${countryCode} flag`} width={70} height={70} />
                         }
@@ -49,7 +51,10 @@ export default function CountryPage() {
                         </ul>
                         <div className='col-span-12 lg:col-span-8 p-1'>
                             <div className='border p-2'>
-                                <PopulationChart populationData={countryData.populationData} />
+                                {typeof countryData.populationData === 'string' && <div className='text-center'>No population data available</div>}
+                                {Array.isArray(countryData.populationData) && countryData.populationData.length > 0 &&
+                                    <PopulationChart populationData={countryData.populationData} />
+                                }
                             </div>
                         </div>
                     </div>
