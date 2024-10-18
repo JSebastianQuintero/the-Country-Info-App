@@ -17,6 +17,7 @@ export interface PopulationData {
 }
 
 export interface CountryData {
+    commonName: string;
     borderCountries: BorderCountry[];
     populationData: PopulationData[];
     flagUrl: string;

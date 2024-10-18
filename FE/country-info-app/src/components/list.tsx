@@ -29,7 +29,7 @@ export function CountryListComponent() {
                 <Link
                     key={`country${index}`}
                     className="p-3 capitalize hover:bg-black/10"
-                    href={`/country/${country.countryCode}/${country.name}`}>
+                    href={`/country/${country.countryCode}`}>
                     {country.name}
                 </Link>
             ))}
@@ -46,7 +46,7 @@ export function BorderCountryListComponent({countries}:{countries: BorderCountry
                 <Link
                     key={`country${index}`}
                     className="p-3 capitalize hover:bg-black/10"
-                    href={`/country/${country.countryCode}/${country.commonName}`}>
+                    href={`/country/${country.countryCode}`}>
                     {country.commonName}
                 </Link>
             ))}
