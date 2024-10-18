@@ -33,9 +33,15 @@ export default function CountryPage() {
                         <h1 className='text-4xl font-bold uppercase text-center w-full'>
                         {countryName}
                         </h1>
-                        <Image className='' src={countryData.flagUrl} alt={`${countryCode} flag`} width={70} height={70} />
+                        <Image className='' src={countryData.flagUrl} alt={`${countryCode} flag`} width={70} height={70}/>
                     </div>
-
+                    <div className='grid grid-cols-12'>
+                    <ul className="p-2 col-span-12 lg:col-span-4">
+                        <div className="border">
+                        <BorderCountryListComponent countries={countryData.borderCountries}/>
+                        </div>
+                    </ul>
+                    </div>
                 </div>
             )}
             {error && <div className="text-red-500 w-full p-4 text-center">{error}</div>}

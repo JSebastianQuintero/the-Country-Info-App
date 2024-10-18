@@ -39,4 +39,18 @@ export function CountryListComponent() {
     );
 }
 
+export function BorderCountryListComponent({countries}:{countries: BorderCountry[]}) {
+    return (
+        <div className="w-full flex flex-col divide-y-2 overflow-hidden">
+            {countries.map((country: BorderCountry, index) => (
+                <Link
+                    key={`country${index}`}
+                    className="p-3 capitalize hover:bg-black/10"
+                    href={`/country/${country.countryCode}/${country.commonName}`}>
+                    {country.commonName}
+                </Link>
+            ))}
+        </div>
+    );
+
 }
